@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
 
-  const {user,setShowLogin} = useContext(AppContext)
+  const { user, setShowLogin } = useContext(AppContext)
   const navigate = useNavigate()
 
-  const onClickHandler = ()=>{
-    if(user){
+  const onClickHandler = () => {
+    if (user) {
       navigate('/result')
     } else {
       setShowLogin(true)

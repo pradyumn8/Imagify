@@ -11,7 +11,6 @@ const Login = () => {
     const [state, setState] = useState('Login')
     const { setShowLogin, backendUrl, setToken, setUser } = useContext(AppContext)
 
-
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -21,42 +20,29 @@ const Login = () => {
         try {
             if (state === 'Login') {
                 const { data } = await axios.post(backendUrl + '/api/user/login', { email, password })
-                console.log('data', data);
 
                 if (data.success) {
-                    setToken(data.token);
-                    setUser(data.user);
-                    localStorage.setItem("token", data.token);
-                    console.log("Token stored in localStorage:", localStorage.setItem("token"));
-                    setShowLogin(false);
+                    setToken(data.token)
+                    setUser(data.user)
+                    localStorage.setItem('token', data.token)
+                    setShowLogin(false)
                 } else {
-                    console.error("Backend error message:", data.message);
-                    toast.error(data.message || "Something went wrong");
+                    toast.error(data.message)
                 }
-                
-
             } else {
                 const { data } = await axios.post(backendUrl + '/api/user/register', { name, email, password })
-                console.log('data', data);
-
 
                 if (data.success) {
-                    setToken(data.token);
-                    setUser(data.user);
-                    localStorage.setitem("token", data.token);
-                    console.log("Token stored in localStorage:", localStorage.setItem("token"));
-                    setShowLogin(false);
-                    console.error("Backend error message:", data.message);
-
+                    setToken(data.token)
+                    setUser(data.user)
+                    localStorage.setItem('token', data.token)
+                    setShowLogin(false)
                 } else {
-                    console.error("Backend error message:", data.message);
-                    toast.error(data.message || "Something went wrong");
+                    toast.error(data.message)
                 }
-                
             }
         } catch (error) {
-            toast.error(error.message)
-
+            toast.error(data.message)
         }
     }
 
@@ -70,7 +56,8 @@ const Login = () => {
     return (
         <div className='fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center'>
 
-            <motion.form onSubmit={onSubmitHandler}
+            <motion.form
+                onSubmit={onSubmitHandler}
                 initial={{ opacity: 0.2, y: 50 }}
                 transition={{ duration: 0.3 }}
                 whileInView={{ opacity: 1, y: 0 }}
