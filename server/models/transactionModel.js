@@ -9,6 +9,6 @@ const transactionSchema = new mongoose.Schema({
     date:{type: Number},
 })
 
-const transactionModel = mongoose.models.transaction || mongoose.model("transaction", transactionSchema)
+const transactionModel = mongoose.models.transaction || mongoose.model("transaction", transactionSchema);
 
 export default transactionModel;
